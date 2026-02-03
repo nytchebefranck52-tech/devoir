@@ -1,0 +1,173 @@
+ Application de gestion de dépenses sécurisée
+   
+   Auteur
+
+nytchebefranck52-tech
+Dépôt GitHub :
+   https://github.com/nytchebefranck52-tech/devoir
+
+   Description du projet
+
+GOOD GESTION est une application cliente–serveur développée en Python, permettant à un utilisateur de gérer son budget mensuel et ses dépenses personnelles de manière sécurisée.
+
+L’application repose sur :
+
+-une communication réseau UDP
+
+-un chiffrement symétrique (Fernet / AES)
+
+-une interface graphique (wxPython)
+
+-une visualisation graphique du budget (matplotlib)
+
+-Chaque utilisateur est identifié par un mot de passe, utilisé comme clé de chiffrement pour protéger les données échangées.
+
+   Architecture générale
+
+L’application suit une architecture client / serveur :
+
+[ Client wxPython ]  <--UDP chiffré-->  [ Serveur Python ]
+
+
+-Le serveur centralise les données (profil, budget, dépenses)
+
+-Le client fournit l’interface graphique et les interactions utilisateur
+
+-Toutes les données échangées sont chiffrées
+
+    Structure du projet
+devoir/
+│
+├── depense.py          # Serveur UDP sécurisé
+├── menace.py           # Client graphique (wxPython)
+│
+├── depense.spec        # Configuration PyInstaller (serveur)
+├── menace.spec         # Configuration PyInstaller (client)
+│
+├── build/              # Fichiers temporaires PyInstaller
+├── dist/               # Exécutables générés
+│
+└── .editorconfig       # Configuration de l’éditeur
+
+   Sécurité et chiffrement
+
+Le projet utilise :
+
+-SHA-256 pour dériver une clé à partir du mot de passe
+
+-Fernet (cryptography) pour le chiffrement symétrique
+
+-pickle pour la sérialisation des objets Python
+
+Principe :
+
+-Le mot de passe est transformé en clé cryptographique
+
+-Les données sont sérialisées
+
+-Les messages sont chiffrés avant l’envoi
+
+-Le serveur renvoie uniquement des données chiffrées
+
+     Fonctionnalités principales
+
+ Gestion du profil
+
+-Nom
+
+-Profession
+
+-Âge
+
+-Mot de passe (clé de sécurité)
+
+   Gestion du budget
+
+Définition du budget mensuel
+
+Calcul automatique du budget restant
+
+   Gestion des dépenses
+
+-Ajout de dépenses
+
+-Historique avec date automatique
+
+-Calcul du total dépensé
+
+     Visualisation graphique
+
+-Diagramme circulaire :
+
+-Part dépensée
+
+-Part restante du budget
+
+    
+    Technologies utilisées
+Technologie	        Rôle
+Python 3	        Langage principal
+socket (UDP)	        Communication réseau
+cryptography (Fernet)	Chiffrement sécurisé
+wxPython	        Interface graphique
+matplotlib	        Graphiques
+PyInstaller	        Création d’exécutables
+
+     Prérequis
+
+-Python 3.x
+
+Bibliothèques Python :
+
+pip install cryptography wxPython matplotlib
+
+ Exécution du projet
+ Lancer le serveur
+python depense.py
+
+
+Le serveur écoute sur :
+
+IP : 0.0.0.0
+Port : 9999
+
+  Lancer le client
+python menace.py
+
+   Génération des exécutables (optionnel)
+-pyinstaller depense.spec
+-pyinstaller menace.spec
+
+
+Les exécutables seront générés dans le dossier dist/.
+
+    Objectifs pédagogiques
+
+-Comprendre l’architecture client/serveur
+
+-Mettre en œuvre la communication réseau UDP
+
+-Implémenter un chiffrement sécurisé
+
+-Concevoir une interface graphique en Python
+
+-Visualiser des données avec matplotlib
+
+-Packager une application Python
+
+    Licence
+
+-Projet réalisé dans un cadre académique.
+-Utilisation à des fins pédagogiques uniquement.
+
+    Remarque finale
+
+Ce projet illustre une application complète, combinant :
+
+-réseau
+
+-sécurité
+
+-interface graphique
+
+-traitement de données
